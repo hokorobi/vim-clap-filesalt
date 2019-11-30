@@ -3,9 +3,9 @@
 
 function! s:source() abort
   let cmdlist = get(g:, 'clap_filesalt_cmdlist', ['files'])
-  " if empty(g:clap.provider.args)
-  "   return ['Enter command list.']
-  " endif
+  if !empty(g:clap.provider.args)
+    call add(cmdlist, g:clap.provider.args[0])
+  endif
   return clap_filesalt#systemlist(cmdlist)
 endfunction
 
