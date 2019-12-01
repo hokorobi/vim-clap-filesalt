@@ -1,8 +1,3 @@
-scriptencoding utf-8
-
-let s:save_cpo = &cpo
-set cpo&vim
-
 let s:V = vital#clap_filesalt#new()
 let s:Job = s:V.import('System.Job')
 
@@ -44,20 +39,5 @@ function! clap_filesalt#systemlist(...) abort
   else
     return job.stdout
   endif
-endfunction
-
-function! clap_filesalt#system(...) abort
-  let job = s:jobstartwrap(a:000)
-  let lines = ''
-  if job.exit_status
-    for line in job.stderr
-      let lines .= line . "\n"
-    endfor
-  else
-    for line in job.stdout
-      let lines .= line . "\n"
-    endfor
-  endif
-  return lines
 endfunction
 
